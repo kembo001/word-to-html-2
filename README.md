@@ -42,14 +42,16 @@ This project is a React-based web application inspired by WordHTML. It provides 
 ## Folder Structure
 
 ```
-wordhtml-clone/
+wordhtml/
 ├── public/          # Static assets
 ├── src/
-│   ├── components/  # Reusable React components
-│   ├── styles/      # CSS files
+│   ├── Accordions/  # Word to HTML for Accordion
+│   ├── App.css      # CSS
 │   ├── App.js       # Main application file
-│   ├── index.js     # Entry point
-└── README.md        # Project documentation
+│   ├── EditorPreview.js       # Main application file
+│   ├── Index.css    # CSS
+│   ├── Index.js     # Entry point
+└── ├── utils.js     # Function Code
 ```
 
 ## Usage
@@ -57,7 +59,7 @@ wordhtml-clone/
 - Open the editor in your browser.
 - Use the toolbar to format text.
 - View the HTML output in the preview panel.
-- Copy or download the generated HTML for your projects.
+
 
 ## Roadmap
 
