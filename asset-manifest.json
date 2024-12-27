@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/triton-word-to-html/static/css/main.d685895d.css",
-    "main.js": "/triton-word-to-html/static/js/main.6a51a110.js",
-    "index.html": "/triton-word-to-html/index.html",
-    "main.d685895d.css.map": "/triton-word-to-html/static/css/main.d685895d.css.map",
-    "main.6a51a110.js.map": "/triton-word-to-html/static/js/main.6a51a110.js.map"
+    "main.css": "/word-to-html-2/static/css/main.d685895d.css",
+    "main.js": "/word-to-html-2/static/js/main.6a51a110.js",
+    "index.html": "/word-to-html-2/index.html",
+    "main.d685895d.css.map": "/word-to-html-2/static/css/main.d685895d.css.map",
+    "main.6a51a110.js.map": "/word-to-html-2/static/js/main.6a51a110.js.map"
   },
   "entrypoints": [
     "static/css/main.d685895d.css",
