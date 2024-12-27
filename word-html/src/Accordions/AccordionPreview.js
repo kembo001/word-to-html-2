@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Prism from "prismjs";
 import "prismjs/themes/prism.css";
-import { cleanHTML } from "./utils";  // your cleaning function
+import { cleanHTML } from "../utils";  // your cleaning function
 import { parseAccordionsFromHtml } from "./accordionParser";
 import "./AccordionPreview.css";
 

@@ -2,18 +2,13 @@ import React, { useState, useRef, useEffect } from "react";
 import Prism from "prismjs";
 import "prismjs/themes/prism.css";
 import { cleanHTML } from "./utils";
-import { parseAccordionsFromHtml } from './accordionParser';
+// import { parseAccordionsFromHtml } from './accordionParser';
 
 const EditorPreview = () => {
   const [content, setContent] = useState("");
   const editorRef = useRef(null);
   const previewRef = useRef(null); // Reference for the HTML preview
 
-  // Function to handle text formatting
-  const formatText = (command) => {
-    document.execCommand(command, false, null); // Executes formatting commands
-    editorRef.current.focus(); // Refocus the editor after formatting
-  };
 
   // Handle input in the editor
   const handleInput = (e) => {
@@ -98,6 +93,7 @@ const EditorPreview = () => {
         </button>
       </div>
     </div>
+
 
   );
 };

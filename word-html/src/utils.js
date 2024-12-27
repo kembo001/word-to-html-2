@@ -71,17 +71,33 @@ export const cleanHTML = (html) => {
 
   // ------------------------------------------------------------------------- NICHE CODE THAT COULD POSSIBLY CHANGE ANYTIME ---------------------------------------
 
-  // Convert <p> tags with square brackets to <a> tags
-  Array.from(tempDiv.querySelectorAll("p")).forEach((p) => {
-    const match = p.textContent.trim().match(/^\[(.+?)\]$/);
+// Convert <p> tags with square brackets to <a> tags or <img> tags
+Array.from(tempDiv.querySelectorAll("p")).forEach((p) => {
+    const match = p.textContent.trim().match(/^\[(.+?)\]$/); 
+    // e.g., "[Request Service Today!]" or "[Before & After Images]"
     if (match) {
-      const text = match[1];
-      const link = document.createElement("a");
-      link.textContent = text;
-      link.setAttribute("href", "/free-estimate");
-      link.setAttribute("class", "button button--primary");
-      link.setAttribute("title", capitalizeWords(text));
-      p.replaceWith(link);
+      const text = match[1]; // The text inside [ ... ]
+  
+      // Check if the text contains "image" (case-insensitive)
+      if (/image/i.test(text)) {
+        // CREATE <img>
+        const img = document.createElement("img");
+        img.classList.add("lazyload");
+        img.classList.add("content-area-img");
+        img.setAttribute("data-src", "/portals/0/");
+        img.setAttribute("alt", "");
+        img.setAttribute("title", "");
+        // Replace the <p> with the <img>
+        p.replaceWith(img);
+      } else {
+        // CREATE <a> (your existing link logic)
+        const link = document.createElement("a");
+        link.textContent = text;
+        link.setAttribute("href", "/free-estimate");
+        link.setAttribute("class", "button button--primary");
+        link.setAttribute("title", text);  // or do your capitalizeWords if you want
+        p.replaceWith(link);
+      }
     }
   });
 
@@ -122,16 +138,9 @@ export const cleanHTML = (html) => {
       "u",
       "strong",
       "em",
+      "img"
     ],
-    ALLOWED_ATTR: ["href", "title", "class"],
+    ALLOWED_ATTR: ["href", "title", "class", "alt", "data-src"],
   });
 };
-
-// Helper to capitalize each word, in case you still need it
-function capitalizeWords(str) {
-  return str
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-}
 

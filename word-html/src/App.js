@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 import EditorPreview from "./EditorPreview";
-import AccordionPreview from "./AccordionPreview";
+import AccordionPreview from "./Accordions/AccordionPreview";
 
 function App() {
   return (
