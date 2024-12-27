@@ -1,0 +1,33 @@
+@import "prismjs/themes/prism-twilight.css";
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import "prismjs/themes/prism.css";
+
+:root {
+  --main-gray: #6b6b6b;
+  --main-blue: #00abd8;
+  --main-red: #9e2065;
+  --white: #ffffff;
+  --black: #000000;
+  --light-gray: #f0f0f0; 
+  --dark-gray: #333333;  
+}
+
+
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--white);
+  font-family: Montserrat, sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  color: var(--black);
+}
+
+p {
+  margin: 0 0 1.5rem;
+  font-family: lato, sans-serif;
+  font-weight: 300;
+}
+
