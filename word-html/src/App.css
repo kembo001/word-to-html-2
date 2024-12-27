@@ -42,6 +42,7 @@
       align-items: center;
       padding: var(--spacing-lg) var(--spacing-md);
       gap: var(--spacing-lg);
+      align-items: self-start;
 }
 
 
@@ -62,9 +63,6 @@ pre.language-html code {
 }
 
 
-.wysiwyg-editor{
-  min-height: 500px;
-}
 
 .preview-container {
   overflow: auto;
@@ -76,16 +74,12 @@ pre.language-html code {
   border: 1px solid #ccc;
   padding: 10px;
   background-color: #f9f9f9;
-  width: 850px;
-  height: 500px;
 }
 
 .word{
   border: 1px solid #ccc;
     padding: 10px;
     background-color: #f9f9f9;
-    width: 850px;
-    height: 500px;
 }
 
 button {
@@ -107,3 +101,24 @@ button:focus {
   background-color: var(--main-gray);
 }
 
+.word, .html-preview{
+  min-height: 370px;
+  width: 50%;
+}
+
+.wysiwyg-editor{
+  overflow: auto;
+}
+
+.ltr{
+  margin-top: 0 !important;
+}
+
+h3{
+  margin: 4rem 0;
+  font-weight: 800;
+  text-align: center;
+  font-size: 2.375rem;
+  line-height: 1.26316;
+  color: var(--main-red);
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import './App.css';
 import EditorPreview from "./EditorPreview";
+import AccordionPreview from "./AccordionPreview";
 
 function App() {
   return (
@@ -12,6 +13,12 @@ function App() {
 
       {/* Editor and Preview */}
       <EditorPreview />
+      
+       {/* For Accrodion */}
+       <div>
+         <h3>For Accordions</h3>
+       <AccordionPreview />
+       </div>
 
       {/* Footer */}
       <footer className="app-footer">

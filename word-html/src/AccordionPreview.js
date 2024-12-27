@@ -1,28 +1,28 @@
+// AccordionPreview.js
 import React, { useState, useRef, useEffect } from "react";
 import Prism from "prismjs";
 import "prismjs/themes/prism.css";
-import { cleanHTML } from "./utils";
-import { parseAccordionsFromHtml } from './accordionParser';
+import { cleanHTML } from "./utils";  // your cleaning function
+import { parseAccordionsFromHtml } from "./accordionParser";
+import "./AccordionPreview.css";
 
-const EditorPreview = () => {
+const AccordionPreview = () => {
   const [content, setContent] = useState("");
   const editorRef = useRef(null);
-  const previewRef = useRef(null); // Reference for the HTML preview
+  const previewRef = useRef(null);
 
-  // Function to handle text formatting
-  const formatText = (command) => {
-    document.execCommand(command, false, null); // Executes formatting commands
-    editorRef.current.focus(); // Refocus the editor after formatting
-  };
-
-  // Handle input in the editor
+  // When user types in the editor
   const handleInput = (e) => {
     const rawHtml = e.currentTarget.innerHTML;
-    const cleanedHtml = cleanHTML(rawHtml); // Clean the HTML
-    setContent(cleanedHtml);
+    // 1) Clean the HTML
+    const cleanedHtml = cleanHTML(rawHtml);
+    // 2) Convert <h4> + <p> to accordions
+    const accordionHtml = parseAccordionsFromHtml(cleanedHtml);
+    // 3) Update state (final code)
+    setContent(accordionHtml);
   };
 
-  // Handle Copy to Clipboard
+  // Copy final HTML to clipboard
   const handleCopy = () => {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(content).then(() => {
@@ -33,7 +33,7 @@ const EditorPreview = () => {
     }
   };
 
-  // Enable Ctrl+A to select the HTML preview
+  // Optional: Allow Ctrl+A to select all code in <pre>
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.ctrlKey && e.key === "a") {
@@ -45,39 +45,37 @@ const EditorPreview = () => {
         selection.addRange(range);
       }
     };
-
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // Re-highlight syntax whenever content updates
+  // Re-highlight syntax whenever `content` changes
   useEffect(() => {
     Prism.highlightAll();
   }, [content]);
 
   return (
     <div className="editor-preview-container">
-<div className="word">
-    <h2>Word</h2>
-          {/* Editor */}
-          <div
-        ref={editorRef}
-        className="wysiwyg-editor"
-        contentEditable
-        suppressContentEditableWarning
-        onInput={handleInput}
-        style={{
-          border: "1px solid #ccc",
-          padding: "10px",
-          height: "200px",
-          maxHeight: "200px",
-        }}
-      ></div>
-</div>
+      <div className="word">
+        <h2>Word → Accordion</h2>
+        <div
+          ref={editorRef}
+          className="wysiwyg-editor"
+          contentEditable
+          suppressContentEditableWarning
+          onInput={handleInput}
+          style={{
+            border: "1px solid #ccc",
+            padding: "10px",
+            height: "200px",
+            maxHeight: "200px",
+            overflowY: "auto",
+          }}
+        />
+      </div>
 
-      {/* HTML Code Preview with Syntax Highlighting */}
       <div className="html-preview">
-        <h2>HTML Code Preview</h2>
+        <h2>Accordion Output</h2>
         <pre
           className="language-html"
           ref={previewRef}
@@ -87,8 +85,9 @@ const EditorPreview = () => {
             height: "200px",
             maxHeight: "200px",
             backgroundColor: "#f9f9f9",
-            whiteSpace: "pre-wrap", // Ensures the code wraps properly
-            wordWrap: "break-word", // Ensures long words wrap
+            whiteSpace: "pre-wrap",
+            wordWrap: "break-word",
+            overflowY: "auto",
           }}
         >
           <code className="language-html">{content}</code>
@@ -98,8 +97,7 @@ const EditorPreview = () => {
         </button>
       </div>
     </div>
-
   );
 };
 
-export default EditorPreview;
+export default AccordionPreview;

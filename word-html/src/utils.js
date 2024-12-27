@@ -94,6 +94,14 @@ export const cleanHTML = (html) => {
   });
 
   // ------------------------------------------------------------------------- NICHE CODE THAT COULD POSSIBLY CHANGE ANYTIME ---------------------------------------
+  Array.from(tempDiv.querySelectorAll("p")).forEach((p) => {
+    const text = p.textContent.replace(/\u00A0/g, "").trim(); 
+    // Remove &nbsp; first, then trim
+    if (!text) {
+      // If there's no text left, remove the paragraph
+      p.remove();
+    }
+  });
 
   // Use DOMPurify to sanitize the cleaned HTML
   return DOMPurify.sanitize(tempDiv.innerHTML, {
@@ -118,3 +126,12 @@ export const cleanHTML = (html) => {
     ALLOWED_ATTR: ["href", "title", "class"],
   });
 };
+
+// Helper to capitalize each word, in case you still need it
+function capitalizeWords(str) {
+  return str
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
