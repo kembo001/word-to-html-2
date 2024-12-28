@@ -1,5 +1,5 @@
 # WordHTML Clone
-<!-- [Live Site](https://kembo001.github.io/word-to-html/) -->
+[Live Site](https://kembo001.github.io/word-to-html-2/)
 This project is a React-based web application inspired by WordHTML. It provides users with a WYSIWYG (What You See Is What You Get) editor to create rich text and convert it into clean HTML.
 
 ## Features
