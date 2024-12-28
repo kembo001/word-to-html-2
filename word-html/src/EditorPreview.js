@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Prism from "prismjs";
 import "prismjs/themes/prism.css";
 import { cleanHTML } from "./utils";
-// import { parseAccordionsFromHtml } from './accordionParser';
+import { toast, ToastContainer } from "react-toastify";
 
 const EditorPreview = () => {
   const [content, setContent] = useState("");
@@ -21,10 +21,10 @@ const EditorPreview = () => {
   const handleCopy = () => {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(content).then(() => {
-        alert("HTML code copied to clipboard!");
+        toast.success("HTML code copied to clipboard!");
       });
     } else {
-      alert("Clipboard API not supported in your browser.");
+      toast.error("Clipboard API not supported in your browser.");
     }
   };
 
@@ -72,7 +72,7 @@ const EditorPreview = () => {
 
       {/* HTML Code Preview with Syntax Highlighting */}
       <div className="html-preview">
-        <h2>HTML Code Preview</h2>
+        <h2>HTML Code</h2>
         <pre
           className="language-html"
           ref={previewRef}
@@ -92,6 +92,7 @@ const EditorPreview = () => {
           Copy HTML
         </button>
       </div>
+      <ToastContainer />
     </div>
 
 

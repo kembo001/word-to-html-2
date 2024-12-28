@@ -5,6 +5,7 @@ import "prismjs/themes/prism.css";
 import { cleanHTML } from "../utils";  // your cleaning function
 import { parseAccordionsFromHtml } from "./accordionParser";
 import "./AccordionPreview.css";
+import { toast, ToastContainer } from "react-toastify";
 
 const AccordionPreview = () => {
   const [content, setContent] = useState("");
@@ -26,10 +27,10 @@ const AccordionPreview = () => {
   const handleCopy = () => {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(content).then(() => {
-        alert("HTML code copied to clipboard!");
+        toast.success("HTML code copied to clipboard!");
       });
     } else {
-      alert("Clipboard API not supported in your browser.");
+      toast.error("Clipboard API not supported in your browser.");
     }
   };
 
@@ -75,7 +76,7 @@ const AccordionPreview = () => {
       </div>
 
       <div className="html-preview">
-        <h2>Accordion Output</h2>
+        <h2>Accordion Code</h2>
         <pre
           className="language-html"
           ref={previewRef}
